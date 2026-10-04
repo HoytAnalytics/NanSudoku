@@ -1,0 +1,45 @@
+@font-face{font-family:Atkinson;src:local("Arial");font-weight:700}
+@font-face{font-family:SudokuNum;src:local("DejaVu Sans");font-weight:700}
+:root{--black:#000;--white:#fff;--green:#dff5df;--red:#ffdede;--blue:#006eff;--gap:10px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:#000;color:#fff;font-family:Atkinson,Arial,sans-serif}
+body{min-height:100vh;overscroll-behavior:none}
+button{font:inherit;touch-action:manipulation}
+.screen{min-height:100vh;padding:32px 28px 48px;display:flex;flex-direction:column;align-items:center;background:#000}
+.screen h1{font-size:clamp(46px,7vw,80px);line-height:1.05;margin:18px 0 38px;font-weight:700;text-align:center}
+.choice-list{width:min(900px,100%);display:flex;flex-direction:column;gap:48px}
+.choice{min-height:200px;border:0;border-radius:12px;background:#fff;color:#000;font-size:clamp(48px,8vw,80px);font-weight:700;line-height:1.05;padding:22px 28px;cursor:pointer}
+.choice:focus-visible,.small-btn:focus-visible,.cell:focus-visible,.num-btn:focus-visible{outline:8px solid #ffe900;outline-offset:4px}
+.back{align-self:flex-start;background:transparent;color:#fff;border:0;font-size:54px;font-weight:700;padding:4px 12px;cursor:pointer}
+.subheading{font-size:34px;text-align:center;margin:-18px 0 38px}
+.cards{width:min(1000px,100%);display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
+.card{background:#fff;color:#000;border:0;border-radius:12px;padding:25px;text-align:left;cursor:pointer;min-height:180px}
+.card strong{display:block;font-size:36px;line-height:1.1;margin-bottom:14px}.card span{font-size:28px}
+.empty{font-size:34px;text-align:center;max-width:800px;line-height:1.35}
+.play{min-height:100vh;background:#000;color:#fff;padding:18px 22px 30px;display:flex;flex-direction:column}
+.play-top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:12px}
+.small-btn{background:#fff;color:#000;border:0;border-radius:10px;padding:14px 22px;font-size:30px;font-weight:700;min-width:110px;cursor:pointer}
+.play-title{text-align:center;font-size:34px;font-weight:700}
+.board-area{display:flex;justify-content:center;flex:1;min-height:0;overflow:auto;padding:10px}
+.board-wrap{position:relative;display:flex;justify-content:center;align-items:center}
+.board{display:grid;background:#000;border:14px solid #000;box-shadow:0 0 0 2px #000;flex:none}
+.cell{position:relative;border:6px solid #000;background:#dff5df;color:#000;display:flex;align-items:center;justify-content:center;font-family:SudokuNum,Arial,sans-serif;font-weight:700;cursor:pointer;padding:0;line-height:1}
+.cell.given{background:#fff}
+.cell.selected{outline:14px solid var(--blue);outline-offset:-14px;z-index:3}
+.cell.dim{filter:brightness(.52)}
+.cell.bad{background:#ffdede}
+.cell.pulse-good{animation:good 1.3s ease}
+.cell.pulse-bad{animation:bad 1.3s ease}
+@keyframes good{0%,100%{background:#dff5df}35%{background:#82e982}70%{background:#dff5df}}
+@keyframes bad{0%,100%{background:#ffdede}35%{background:#ff8e8e}70%{background:#ffdede}}
+.num-pad{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;padding:12px 4px 4px;max-width:1000px;margin:0 auto;width:100%}
+.num-btn{background:#fff;color:#000;border:0;border-radius:10px;min-width:78px;min-height:78px;font-size:44px;font-weight:700;cursor:pointer}
+.num-btn.erase{min-width:130px;font-size:32px}
+.rules{background:#fff;color:#000;min-height:100vh;padding:30px;line-height:1.45}
+.rules h1{font-size:54px}.rules p,.rules li{font-size:30px}.rules button{background:#000;color:#fff;border:0;border-radius:10px;padding:18px 26px;font-size:32px;font-weight:700}
+.complete{justify-content:center}.tick{font-size:150px;line-height:1;color:#55e055}.complete h1{margin:18px 0;font-size:72px}.complete .choice-list{gap:48px}
+.notice{font-size:25px;max-width:900px;text-align:center;line-height:1.35;margin:0 auto 24px}
+@media (orientation:landscape) and (min-width:700px){
+ .play{padding:12px 20px}.play-top{margin-bottom:2px}.board-area{padding:2px}.num-pad{max-width:700px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
